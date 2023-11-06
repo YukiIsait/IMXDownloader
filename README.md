@@ -12,9 +12,9 @@
 
 ## 使用方法
 
-1. 编译好原始的二进制bin文件，如 `u-boot.bin` 等，并将编译好的 `.bin` 文件和本软件放置到同一个目录下。
+1. 编译好原始的二进制 Bin 文件，如 `u-boot.bin` 等，并将编译好的 `.bin` 文件和本软件放置到同一个目录下。
 2. **以管理员身份**执行命令 `imxdownload <soucre_bin> <sd_device>`
-    - 如烧写 `u-boot.bin` 到 `\\.\PhysicalDrive2` 中即可使用如下所示命令:
+    - 如烧写 `u-boot.bin` 到 `\\.\PhysicalDrive2` 中即可使用如下所示命令：
 
         CMD
         ```text
