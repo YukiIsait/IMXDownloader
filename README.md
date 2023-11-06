@@ -33,6 +33,6 @@
 
 ### 可以使用 WinObj 查看磁盘设备名称
 
-WinObj 是一个程序，它使用本机 Windows API (由 NTDLL.DLL 提供) 来访问和显示 NT 对象管理器命名空间上的信息。
+WinObj 是一个程序，它使用本机 Windows API（由 NTDLL.DLL 提供）来访问和显示 NT 对象管理器命名空间上的信息。
 
 [WinObj - Sysinternals | Microsoft Learn](https://learn.microsoft.com/zh-cn/sysinternals/downloads/winobj)
