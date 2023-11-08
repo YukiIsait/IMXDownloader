@@ -3,8 +3,6 @@
 #include "FileOperator.h"
 #include "IvtDcdTable.h"
 
-#define BIN_OFFSET (3072)
-
 BOOL WriteDataToSdDevice(LPCWSTR sdDeviceName, LPCWSTR binFileName, DWORD memSize) {
     BOOL result = FALSE;
 
@@ -27,13 +25,13 @@ BOOL WriteDataToSdDevice(LPCWSTR sdDeviceName, LPCWSTR binFileName, DWORD memSiz
     }
 
     DWORD sectorSize = FileOperator_GetSectorSize(sdFile);
-    if (!sectorSize) {
-        wprintf_s(L"Error: Failed to get sector size of %s.\n", sdDeviceName);
+    if (sectorSize != 512) {
+        wprintf_s(L"Error: Only 512 bytes sector size is supported.\n");
         goto CleanSDFile;
     }
 
     DWORD bufferSize;
-    LPVOID buffer = FileOperator_AllocateSectorBuffer(sectorSize, binSize + BIN_OFFSET, &bufferSize);
+    LPVOID buffer = FileOperator_AllocateSectorBuffer(sectorSize, binSize + 3072, &bufferSize);
     if (!buffer) {
         wprintf_s(L"Error: Failed to allocate memory.\n");
         goto CleanSDFile;
@@ -47,7 +45,7 @@ BOOL WriteDataToSdDevice(LPCWSTR sdDeviceName, LPCWSTR binFileName, DWORD memSiz
     }
     memcpy_s(buffer, tableSize, header, tableSize);
 
-    if (!FileOperator_ReadFile(binFile, (PCHAR) buffer + BIN_OFFSET, binSize)) {
+    if (!FileOperator_ReadFile(binFile, (PCHAR) buffer + 3072, binSize)) {
         wprintf_s(L"Error: Failed to read %s.\n", binFileName);
         goto CleanSectorBuffer;
     }
