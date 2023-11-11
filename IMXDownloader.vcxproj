@@ -99,6 +99,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>$(OutDir)NtDll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EntryPointSymbol>EntryPoint</EntryPointSymbol>
     </Link>
     <PreLinkEvent>
       <Command>lib /def:$(ProjectDir)NtDll.def /out:$(OutDir)NtDll.lib /nologo /machine:i386</Command>
@@ -124,6 +125,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>$(OutDir)NtDll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EntryPointSymbol>EntryPoint</EntryPointSymbol>
     </Link>
     <PreLinkEvent>
       <Command>lib /def:$(ProjectDir)NtDll.def /out:$(OutDir)NtDll.lib /nologo /machine:i386</Command>
