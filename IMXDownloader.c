@@ -8,19 +8,19 @@ BOOL WriteDataToSdDevice(LPCWSTR sdDeviceName, LPCWSTR binFileName, DWORD memSiz
 
     HANDLE binFile = FileOperator_OpenFile(binFileName);
     if (!binFile) {
-        Console_PrintError(L"Error: Failed to open bin file.\n");
+        Console_PrintError(L"Error: Failed to open file.\n");
         goto Return;
     }
 
     HANDLE sdFile = FileOperator_OpenFile(sdDeviceName);
     if (!sdFile) {
-        Console_PrintError(L"Error: Failed to open sd device.\n");
+        Console_PrintError(L"Error: Failed to open device.\n");
         goto CleanBinFile;
     }
 
     DWORD binSize = FileOperator_GetFileSize(binFile);
     if (!binSize) {
-        Console_PrintError(L"Error: Failed to get size of bin file.\n");
+        Console_PrintError(L"Error: Failed to get file size.\n");
         goto CleanSDFile;
     }
 
@@ -46,12 +46,12 @@ BOOL WriteDataToSdDevice(LPCWSTR sdDeviceName, LPCWSTR binFileName, DWORD memSiz
     CopyMemory(buffer, header, headerSize);
 
     if (!FileOperator_ReadFile(binFile, (PCHAR) buffer + 3072, binSize)) {
-        Console_PrintError(L"Error: Failed to read bin file.\n");
+        Console_PrintError(L"Error: Failed to read file.\n");
         goto CleanSectorBuffer;
     }
 
     if (!FileOperator_WriteSector(sdFile, 2, sectorSize, buffer, bufferSize)) {
-        Console_PrintError(L"Error: Failed to write to sd device.\n");
+        Console_PrintError(L"Error: Failed to write sector.\n");
         goto CleanSectorBuffer;
     }
 
