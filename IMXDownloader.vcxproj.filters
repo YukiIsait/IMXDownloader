@@ -18,7 +18,7 @@
     <ClCompile Include="IMXDownloader.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IvtDcdTable.c">
+    <ClCompile Include="IMXHeader.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FileOperator.c">
@@ -26,7 +26,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IvtDcdTable.h">
+    <ClInclude Include="IMXHeader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileOperator.h">

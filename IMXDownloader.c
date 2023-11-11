@@ -1,7 +1,7 @@
 #include <Windows.h>
 #include <stdio.h>
 #include "FileOperator.h"
-#include "IvtDcdTable.h"
+#include "IMXHeader.h"
 
 BOOL WriteDataToSdDevice(LPCWSTR sdDeviceName, LPCWSTR binFileName, DWORD memSize) {
     BOOL result = FALSE;
@@ -37,13 +37,13 @@ BOOL WriteDataToSdDevice(LPCWSTR sdDeviceName, LPCWSTR binFileName, DWORD memSiz
         goto CleanSDFile;
     }
 
-    DWORD tableSize;
-    LPCVOID header = IvtDcdTable_GetTable(memSize, &tableSize);
+    DWORD headerSize;
+    LPCVOID header = IMXHeader_GetHeader(memSize, &headerSize);
     if (!header) {
         wprintf_s(L"Error: Failed to get header.\n");
         goto CleanSectorBuffer;
     }
-    memcpy_s(buffer, tableSize, header, tableSize);
+    memcpy_s(buffer, bufferSize, header, headerSize);
 
     if (!FileOperator_ReadFile(binFile, (PCHAR) buffer + 3072, binSize)) {
         wprintf_s(L"Error: Failed to read %s.\n", binFileName);

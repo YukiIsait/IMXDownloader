@@ -1,4 +1,4 @@
-#include "IvtDcdTable.h"
+#include "IMXHeader.h"
 
 const ULONGLONG imx6IvtDcdTable512M[128] = {
     0x87800000402000d1, 0x877ff42c00000000, 0x877ff400877ff420, 0x0000000000000000,
@@ -70,7 +70,7 @@ const ULONGLONG imx6IvtDcdTable256M[128] = {
     0x0000000000000000, 0x0000000000000000, 0x0000000000000000, 0x0000000000000000
 };
 
-LPCVOID IvtDcdTable_GetTable(DWORD memSize, LPDWORD bufferSize) {
+LPCVOID IMXHeader_GetHeader(DWORD memSize, LPDWORD bufferSize) {
     switch (memSize) {
         case 512:
             *bufferSize = sizeof(imx6IvtDcdTable512M);
