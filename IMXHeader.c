@@ -1,6 +1,6 @@
 #include "IMXHeader.h"
 
-const ULONGLONG imx6IvtDcdTable512M[128] = {
+const ULONGLONG imxHeader512M[128] = {
     0x87800000402000d1, 0x877ff42c00000000, 0x877ff400877ff420, 0x0000000000000000,
     0x00200000877ff000, 0x40e801d200000000, 0x68400c0204e401cc, 0x6c400c02ffffffff,
     0x70400c02ffffffff, 0x74400c02ffffffff, 0x78400c02ffffffff, 0x7c400c02ffffffff,
@@ -35,7 +35,7 @@ const ULONGLONG imx6IvtDcdTable512M[128] = {
     0x0000000000000000, 0x0000000000000000, 0x0000000000000000, 0x0000000000000000
 };
 
-const ULONGLONG imx6IvtDcdTable256M[128] = {
+const ULONGLONG imxHeader256M[128] = {
     0x87800000402000d1, 0x877ff42c00000000, 0x877ff400877ff420, 0x0000000000000000,
     0x00076000877ff000, 0x40e801d200000000, 0x68400c0204e401cc, 0x6c400c02ffffffff,
     0x70400c02ffffffff, 0x74400c02ffffffff, 0x78400c02ffffffff, 0x7c400c02ffffffff,
@@ -73,11 +73,11 @@ const ULONGLONG imx6IvtDcdTable256M[128] = {
 LPCVOID IMXHeader_GetHeader(DWORD memSize, LPDWORD bufferSize) {
     switch (memSize) {
         case 512:
-            *bufferSize = sizeof(imx6IvtDcdTable512M);
-            return imx6IvtDcdTable512M;
+            *bufferSize = sizeof(imxHeader512M);
+            return imxHeader512M;
         case 256:
-            *bufferSize = sizeof(imx6IvtDcdTable256M);
-            return imx6IvtDcdTable256M;
+            *bufferSize = sizeof(imxHeader256M);
+            return imxHeader256M;
         default:
             return NULL;
     }
