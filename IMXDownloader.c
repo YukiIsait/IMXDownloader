@@ -43,7 +43,7 @@ BOOL WriteDataToSdDevice(LPCWSTR sdDeviceName, LPCWSTR binFileName, DWORD memSiz
         Console_PrintError(L"Error: Failed to get header.\n");
         goto CleanSectorBuffer;
     }
-    memcpy_s(buffer, bufferSize, header, headerSize);
+    CopyMemory(buffer, header, headerSize);
 
     if (!FileOperator_ReadFile(binFile, (PCHAR) buffer + 3072, binSize)) {
         Console_PrintError(L"Error: Failed to read bin file.\n");
@@ -66,22 +66,22 @@ Return:
     return result;
 }
 
-int Main(int argc, LPWSTR* argv) {
-    if ((argc != 3) && (argc != 4)) {
+int Main(int argumentCount, LPWSTR* argumentVector) {
+    if ((argumentCount != 3) && (argumentCount != 4)) {
         Console_PrintError(L"Error Usage! Reference Below:\n");
         Console_PrintError(L"IMXDownload [-512m or -256m] <source_bin> <sd_device>\n");
         return -1;
     }
 
-    LPCWSTR sourceBin = argv[1];
-    LPCWSTR sdDevice = argv[2];
+    LPCWSTR sourceBin = argumentVector[1];
+    LPCWSTR sdDevice = argumentVector[2];
     DWORD memSize = 512;
-    if (argc == 4) {
-        sourceBin = argv[2];
-        sdDevice = argv[3];
-        if (lstrcmpW(argv[1], L"-256m") == 0) {
+    if (argumentCount == 4) {
+        sourceBin = argumentVector[2];
+        sdDevice = argumentVector[3];
+        if (lstrcmpW(argumentVector[1], L"-256m") == 0) {
             memSize = 256;
-        } else if (lstrcmpW(argv[1], L"-512m") == 0) {
+        } else if (lstrcmpW(argumentVector[1], L"-512m") == 0) {
             memSize = 512;
         } else {
             Console_PrintError(L"Error: Invalid memory size.\n");

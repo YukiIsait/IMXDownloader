@@ -1,19 +1,19 @@
 #include <Windows.h>
 #include "IMXDownloader.h"
 
-int WINAPI wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prevInstance, _In_ PWSTR cmdLine, _In_ int cmdShow) {
-    UNREFERENCED_PARAMETER(prevInstance);
-    UNREFERENCED_PARAMETER(prevInstance);
-    UNREFERENCED_PARAMETER(cmdShow);
-    if (!*cmdLine) {
-        return Main(0, NULL);
+int Main(int argumentCount, LPWSTR* argumentVector);
+
+DWORD EntryPoint() {
+    LPWSTR commandLine = GetCommandLineW();
+    if (!*commandLine) {
+        return Main(0, &commandLine);
     }
-    int argc;
-    LPWSTR* argv = CommandLineToArgvW(cmdLine, &argc);
-    if (!argv) {
-        return Main(0, NULL);
+    int argumentCount;
+    LPWSTR* argumentVector = CommandLineToArgvW(commandLine, &argumentCount);
+    if (!argumentCount) {
+        return Main(0, &commandLine);
     }
-    int result = Main(argc, argv);
-    LocalFree(argv);
-    return result;
+    int exitCode = Main(argumentCount, argumentVector);
+    LocalFree(argumentVector);
+    return exitCode;
 }
