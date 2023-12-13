@@ -12,18 +12,12 @@
 
 ## 使用方法
 
-1. 编译好原始的二进制 Bin 文件，如 `u-boot.bin` 等，并将编译好的 `.bin` 文件和本软件放置到同一个目录下。
-2. **以管理员身份**执行命令 `imxdownload <soucre_bin> <sd_device>`
-    - 如烧写 `u-boot.bin` 到 `\\.\PhysicalDrive2` 中即可使用如下所示命令：
+1. 编译好原始的二进制 Bin 文件，如 `u-boot.bin` 等。
+2. **以管理员身份**执行命令 `imxdownload <soucre_bin> <sd_device>`，例如烧写 `u-boot.bin` 到 `\\.\PhysicalDrive2` 中即可使用如下命令：
 
-        CMD
-        ```text
-        imxdownload u-boot.bin \\.\PhysicalDrive2
-        ```
-        PowerShell
-        ```text
-        .\imxdownload u-boot.bin \\.\PhysicalDrive2
-        ```
+    ```text
+    .\imxdownload u-boot.bin \\.\PhysicalDrive2
+    ```
 
 > 也可以将本软件加入到环境变量中，这样就可以在任意目录下使用 `imxdownload` 命令。
 
